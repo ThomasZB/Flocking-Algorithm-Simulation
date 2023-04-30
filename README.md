@@ -9,4 +9,4 @@ $$u_i=u_i^\alpha+u_i^\beta+u_i^\gamma$$
 
 具体细节可以尝试删除某个分量，看看仿真表现，代码中的一些超参数都是凭感觉设置的，并未调整到最佳，若有兴趣可以尝试调整参数看看仿真表现。
 
-![image](https://raw.githubusercontent.com/ThomasZB/Flocking-Algorithm-Simulation/main/images/QQ2023430-11955-HD.gif)
+![image](https://raw.githubusercontent.com/ThomasZB/Flocking-Algorithm-Simulation/main/images/1v2fp-nhonj.gif)
