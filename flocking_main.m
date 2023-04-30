@@ -12,24 +12,29 @@ vmax = 2;   % 最大速度
 Destination = [150, 150];   % 目的地
 c1_alpha = 2;
 c2_alpha = 3;
-c1_beta = 8;
+c1_beta = 5;
 c2_beta = 2;
-c1_gamma = 5;
+c1_gamma = 6;
 c2_gamma = 4;
 
 % 初始化
-x = L/10*rand(N,2)+20; 
+x = L/10*rand(N,2)+10; 
 v = vmax*randn(N,2); 
 t = 0;
 
 % 初始化障碍物
 Obstacle_Spheres = [50,50,10; 80,80,10]; % 圆形障碍物，格式为x,y,r
 Obstacle_wall = [1,0,10;0,1,10]; % 无限墙体障碍物，Ax+By+C=0
+% Obstacle_wall = [];
 theta = linspace(0,2*pi);
 circles(1,:) = Obstacle_Spheres(1,3)*cos(theta) + Obstacle_Spheres(1,1);
 circles(2,:) = Obstacle_Spheres(1,3)*sin(theta) + Obstacle_Spheres(1,2);
 circles(3,:) = Obstacle_Spheres(2,3)*cos(theta) + Obstacle_Spheres(2,1);
 circles(4,:) = Obstacle_Spheres(2,3)*sin(theta) + Obstacle_Spheres(2,2);
+lines(1,:)=[-10,-10];
+lines(2,:)=[-10,200];
+lines(3,:)=[-10,-10];
+lines(4,:)=[200,-10];
 
 while t < T
     % Plot positions
@@ -38,7 +43,10 @@ while t < T
     hold on;
     plot(circles(1,:), circles(2,:));
     plot(circles(3,:), circles(4,:));
-    axis([-10 L -10 L]);
+    plot(Destination(1), Destination(2), 'x');
+    plot(lines(1,:), lines(2,:));
+    plot(lines(4,:), lines(3,:));
+    axis([-20 L -20 L]);
     drawnow;
     
     
@@ -56,7 +64,6 @@ while t < T
             g1 = g1 + func_phi_alpha(func_sigma_norm(x(j,:)-x(i,:)),R,D) * func_nij(x(j,:)-x(i,:)); % repulsive term
             g2 = g2 + func_aij(x(j,:), x(i,:), R)*(v(j,:)-v(i,:)); % alignment term
         end
-        
         u_alpha(i,:) = c1_alpha*g1 + c2_alpha*g2;
 
         % 计算和所有圆形beta智能体的距离
@@ -71,7 +78,7 @@ while t < T
             % 垂直于直线的单位向量
             distance_o = Obstacle_wall(j,1:2) / norm(Obstacle_wall(j,1:2));
             % 点和直线的距离
-            proportion = abs(Obstacle_wall(j,1)*x(j,1)+Obstacle_wall(j,2)*x(j,2)+Obstacle_wall(j,3))/sqrt(Obstacle_wall(j,1)^2+Obstacle_wall(j,2)^2);
+            proportion = -(Obstacle_wall(j,1)*x(i,1)+Obstacle_wall(j,2)*x(i,2)+Obstacle_wall(j,3))/sqrt(Obstacle_wall(j,1)^2+Obstacle_wall(j,2)^2);
             Obstacle_dis_vector(j+height(Obstacle_Spheres),:) = proportion*distance_o;% 得到距离向量
         end
         % 计算u_beta
