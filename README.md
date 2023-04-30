@@ -1,7 +1,7 @@
 # Flocking-Algorithm-Simulation
 > 我这里算法是根据论文上面的公式敲出来的，相关原理并不是很了解，目的是完成概率机器人作业。虽然作者本事是做机器人的，但并不涉及到集群上面的项目，**如代码有疏漏欢迎指出~**
 
-项目参考 [github python代码]([amirhosseinh77/Flocking-Multi-Agent: Python implementation of "Flocking for multi-agent dynamic systems: Algorithms and theory" by Olfati-Saber for multi-agent triangular formation. (github.com)](https://github.com/amirhosseinh77/Flocking-Multi-Agent)) ， [Flocking for multi-agent dynamic systems: algorithms and theory]([Flocking for multi-agent dynamic systems: algorithms and theory | IEEE Journals & Magazine | IEEE Xplore](https://ieeexplore.ieee.org/document/1605401))
+项目参考[github python代码](https://github.com/amirhosseinh77/Flocking-Multi-Agent)， [Flocking for multi-agent dynamic systems: algorithms and theory](https://ieeexplore.ieee.org/document/1605401)
 
 项目仿真的是论文第三部分：FLOCKING WITH OBSTACLE AVOIDANCE，也就是包含了避障的代码，核心公式如下
 $$u_i=u_i^\alpha+u_i^\beta+u_i^\gamma$$
